@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <title>Projeto MindAR - Heitor</title>
+    <title>MindAR - Modelo 3D</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bibliotecas -->
@@ -10,25 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
     <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        font-family: sans-serif;
-        background: #f8f8f8;
-      }
-
-      #marcador-container {
-        text-align: center;
-        margin: 20px;
-      }
-
-      #marcador-container img {
-        border: 2px solid #333;
-        border-radius: 10px;
-        max-width: 90%;
-        height: auto;
-      }
-
+      body { margin: 0; overflow: hidden; }
       #loading {
         position: fixed;
         inset: 0;
@@ -37,25 +19,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.2em;
+        font-family: sans-serif;
       }
     </style>
   </head>
 
   <body>
-    <!-- Mostra a imagem do marcador (útil no PC) -->
-    <div id="marcador-container">
-      <h2>Imagem de referência (aponte a câmera do celular para ela):</h2>
-      <img
-        src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png"
-        alt="Imagem alvo MindAR"
-      />
-    </div>
-
-    <!-- Mensagem de carregamento -->
     <div id="loading">Carregando AR...</div>
 
-    <!-- Cena AR (ativa apenas em dispositivos com câmera) -->
     <a-scene
       mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.mind;"
       color-space="sRGB"
@@ -68,9 +39,14 @@
     >
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
+      <!-- Aqui entra o modelo 3D -->
       <a-entity mindar-image-target="targetIndex: 0">
-        <!-- Aqui pode trocar o modelo .gltf depois -->
-        <a-box color="#4CC3D9" depth="0.1" height="0.1" width="0.1" position="0 0 0"></a-box>
+        <a-gltf-model
+          src="modelo.gltf"  <!-- ou substitua pelo link do modelo -->
+          position="0 0 0"
+          rotation="0 180 0"
+          scale="0.3 0.3 0.3"
+        ></a-gltf-model>
       </a-entity>
     </a-scene>
   </body>
